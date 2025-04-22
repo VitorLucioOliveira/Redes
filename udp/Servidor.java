@@ -7,9 +7,26 @@ class Servidor
    private static byte[] receiveData = new byte[1024];
    private static byte[] sendData = new byte[1024];
 
+   public static String cifra(String mensagem){
+      mensagem = mensagem.toLowerCase();
+      StringBuilder mensagem_cifrada = new StringBuilder();
+      int chave = 3;
+
+      for(char i : mensagem.toCharArray())
+      {
+         if( Character.isLetter(i))
+         {
+            char letra_cifrada = 'a' + (i - 'a' + chave) % 26 ;
+            resultado.append(letra_cifrada);
+         }
+      }
+
+      return resultado.toString();
+   }
+
    public static void main(String args[]) throws Exception
    {
-      DatagramSocket serverSocket = new DatagramSocket(portaServidor);
+      DatagramSocket serverSocket = new DatagramSocket(portaServidor);//Objeto que envia e recebe pacotes UDP
 
       while(true) 
       {
@@ -21,7 +38,7 @@ class Servidor
          System.out.println("RECEIVED: " + new String(receivePacket.getData()));
          InetAddress ipCliente = receivePacket.getAddress();
          int portaCliente = receivePacket.getPort();
-         sendData = (new String(receivePacket.getData())).toUpperCase().getBytes();
+         sendData = cifra(new String(receivePacket.getData())).getBytes();
 
          DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ipCliente, portaCliente);
          serverSocket.send(sendPacket);
