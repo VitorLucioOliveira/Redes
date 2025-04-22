@@ -1,5 +1,6 @@
-import java.io.*;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 class Servidor
 {
@@ -16,12 +17,12 @@ class Servidor
       {
          if( Character.isLetter(i))
          {
-            char letra_cifrada = 'a' + (i - 'a' + chave) % 26 ;
-            resultado.append(letra_cifrada);
+            char letra_cifrada = (char) ('a' + (i - 'a' + chave) % 26);
+            mensagem_cifrada.append(letra_cifrada);
          }
       }
 
-      return resultado.toString();
+      return mensagem_cifrada.toString();
    }
 
    public static void main(String args[]) throws Exception
