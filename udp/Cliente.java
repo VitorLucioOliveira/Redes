@@ -19,7 +19,7 @@ class Cliente
    public static void main(String args[]) throws Exception
    {
       DatagramSocket clientSocket = new DatagramSocket();
-      while(true){
+    
       InetAddress ipServidor = InetAddress.getByName("localhost");
       sendData = lerString();
       
@@ -31,6 +31,6 @@ class Cliente
       clientSocket.close();
 
       System.out.println("FROM SERVER:" + new String(receivePacket.getData()));
-   }
+   
    }
 }
