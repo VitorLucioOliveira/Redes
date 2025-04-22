@@ -5,6 +5,23 @@ class Servidor
 {
    private static int portaServidor = 6790;
 
+   public static String cifra(String mensagem){
+      mensagem = mensagem.toLowerCase();
+      StringBuilder mensagem_cifrada = new StringBuilder();
+      int chave = 3;
+
+      for(char i : mensagem.toCharArray())
+      {
+         if( Character.isLetter(i))
+         {
+            char letra_cifrada = (char) ('a' + (i - 'a' + chave) % 26);
+            mensagem_cifrada.append(letra_cifrada);
+         }
+      }
+
+      return mensagem_cifrada.toString();
+   }
+
    public static void main(String argv[]) throws Exception
    {
       //Efetua as primitivas socket e bind, respectivamente
@@ -23,7 +40,7 @@ class Servidor
          String str = entrada.readLine();
          System.out.println("Received: " + str);
 
-         str = str.toUpperCase() + '\n';
+         str = cifra(str);
 
          //Efetua a primitiva send
          DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());
