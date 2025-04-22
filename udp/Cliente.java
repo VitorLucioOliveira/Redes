@@ -19,16 +19,18 @@ class Cliente
    public static void main(String args[]) throws Exception
    {
       DatagramSocket clientSocket = new DatagramSocket();
+      while(true){
       InetAddress ipServidor = InetAddress.getByName("localhost");
       sendData = lerString();
-
+      
       DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ipServidor, portaServidor);
       clientSocket.send(sendPacket);
-
+      
       DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
       clientSocket.receive(receivePacket);
       clientSocket.close();
 
       System.out.println("FROM SERVER:" + new String(receivePacket.getData()));
+   }
    }
 }
