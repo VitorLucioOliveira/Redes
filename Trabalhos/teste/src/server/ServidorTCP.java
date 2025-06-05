@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import model.Candidato;
 import model.Enquete;
@@ -32,9 +34,9 @@ public class ServidorTCP {
                         new Candidato("Kaique"),
                         new Candidato("Larissa"),
                         new Candidato("Marcos")),
-                "01/06/2024 14:00",
-                "00:14:00",
-                false); // Inicialmente fechada
+                LocalDateTime.now(),
+                "00:05:00",
+                true); // Inicialmente fechada
 
         // Inicia o servidor UDP para broadcast de informações
         ServidorUDP.iniciar(enquete);

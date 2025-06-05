@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Candidato;
@@ -47,7 +48,7 @@ public class ClienteTCP {
             boolean status = Boolean.parseBoolean(entrada.readLine());
 
             // Lê os tempos
-            String tempoAbertura = entrada.readLine();
+            LocalDateTime tempoAbertura = LocalDateTime.parse(entrada.readLine());
             String tempoDuracao = entrada.readLine();
 
             // Lê a lista de candidatos e seus votos

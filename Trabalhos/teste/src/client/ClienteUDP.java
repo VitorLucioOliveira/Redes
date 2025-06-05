@@ -3,6 +3,7 @@ package client;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Candidato;
@@ -33,7 +34,7 @@ public class ClienteUDP {
                     if (linhas.length >= 4) {
                         String titulo = linhas[0];
                         boolean status = Boolean.parseBoolean(linhas[1]);
-                        String tempoAbertura = linhas[2];
+                        LocalDateTime tempoAbertura = LocalDateTime.parse(linhas[2]);
                         String tempoDuracao = linhas[3];
 
                         List<Candidato> candidatos = new ArrayList<>();

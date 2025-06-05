@@ -42,7 +42,7 @@ public class ServidorUDP {
                     DatagramPacket pacote = new DatagramPacket(
                             buffer,
                             buffer.length,
-                            InetAddress.getByName("255.255.255.255"),
+                            InetAddress.getByName("255.255.255.255"),// Broadcast para todos os hosts na rede local
                     PORTA_CLIENTE);
 
                     socket.send(pacote);

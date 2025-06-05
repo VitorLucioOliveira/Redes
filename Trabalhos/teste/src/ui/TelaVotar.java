@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import model.Enquete;
 import model.Candidato;
@@ -71,10 +73,14 @@ public class TelaVotar extends JFrame implements ClienteUDP.AtualizacaoListener 
     }
 
     private void barraInformacoes(JLayeredPane pane) {
-        List<Candidato> candidatos = enquete.getCandidatos();
-        String tempo = enquete.getTempoDuracao();
-        String abertura = enquete.getTempoAbertura();
+        
+        List<Candidato> candidatos = enquete.getCandidatos(); 
         boolean status = enquete.isStatus();
+        
+        //formatar tempo
+        String tempo = enquete.getTempoDuracao();
+        String abertura = formatar(enquete.getTempoAbertura());
+       
 
         int barraAltura = 90;
         JPanel barra = new JPanel();
@@ -194,5 +200,13 @@ public class TelaVotar extends JFrame implements ClienteUDP.AtualizacaoListener 
             card.add(votarButton);
             pane.add(card, JLayeredPane.PALETTE_LAYER);
         }
+    }
+
+     private static String formatar(LocalDateTime tempoAbertura) {
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime agora = LocalDateTime.now();
+      
+        return  agora.format(formatter);
     }
 }

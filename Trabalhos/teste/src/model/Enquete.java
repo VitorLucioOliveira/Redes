@@ -1,15 +1,16 @@
 package model;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Enquete {
     private String titulo;
     private List<Candidato> candidatos;
-    private String tempoAbertura;
+    private LocalDateTime tempoAbertura;
     private String tempoDuracao;
     private boolean status; // false for open, true for closed
 
 
-    public Enquete(String titulo, List<Candidato> candidatos, String tempoAbertura, String tempoDuracao, boolean status) {
+    public Enquete(String titulo, List<Candidato> candidatos, LocalDateTime tempoAbertura, String tempoDuracao, boolean status) {
         this.titulo = titulo;
         this.candidatos = candidatos;
         this.tempoAbertura = tempoAbertura;
@@ -22,7 +23,7 @@ public class Enquete {
     public List<Candidato> getCandidatos() {
         return candidatos;
     }
-    public String getTempoAbertura() {
+    public LocalDateTime getTempoAbertura() {
         return tempoAbertura;
     }
     public String getTempoDuracao() {
